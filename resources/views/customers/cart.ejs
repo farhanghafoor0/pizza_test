@@ -1,5 +1,7 @@
 <section class="cart py-16">
-  <div class="empty-cart container mx-auto text-center hidden">
+  <div
+    class="empty-cart container mx-auto text-center <%= session.cart ? 'hidden' : '' %>"
+  >
     <h1 class="text-3xl font-bold mb-2">Cart Empty</h1>
     <p class="text-gray-500 text-lg mb-12">
       You probably haven't ordered a pizza yet.<br />
@@ -13,64 +15,70 @@
     >
   </div>
 
-  <div class="order container mx-auto w-1/2">
+  <div
+    class="order container mx-auto w-1/2 <%= !session.cart ? 'hidden' : '' %>"
+  >
     <div class="flex items-center border-b border-gray-300 pb-4">
       <img src="/img/cart-black.png" alt="" />
       <h1 class="font-bold ml-4 text-2xl">Order Summary</h1>
     </div>
-
     <div class="pizza-lists">
-        <div class="flex items-center my-8">
+      <% if (session.cart) { Object.values(session.cart.items).forEach(function
+      (item) { %>
 
-            <img class="w-24" src="/img/pizza.png" alt="">
-            <div class="flex-1 ml-4">
-                <h1 class="capitalize">marianara</h1>
-                <span>MEDIUM</span>
-            </div>
-            <span class="flex-1">1 Pcs</span>
-            <span class="font-bold text-lg">Rs 300</span>
-
+      <div class="flex items-center my-8">
+        <img class="w-24" src="/img/<%= item.item.image %>" alt="" />
+        <div class="flex-1 ml-4">
+          <h1 class="capitalize"><%= item.item.name %></h1>
+          <span><%= item.item.size %></span>
         </div>
-        <div class="flex items-center my-8">
-
-            <img class="w-24" src="/img/pizza.png" alt="">
-            <div class="flex-1 ml-4">
-                <h1 class="capitalize">marianara</h1>
-                <span>MEDIUM</span>
-            </div>
-            <span class="flex-1">1 Pcs</span>
-            <span class="font-bold text-lg">Rs 300</span>
-
-        </div>
-        <div class="flex items-center my-8">
-
-            <img class="w-24" src="/img/pizza.png" alt="">
-            <div class="flex-1 ml-4">
-                <h1 class="capitalize">marianara</h1>
-                <span>MEDIUM</span>
-            </div>
-            <span class="flex-1">1 Pcs</span>
-            <span class="font-bold text-lg">Rs 300</span>
-
-        </div>
+        <span class="flex-1"><%= item.qty %> Pcs</span>
+        <span class="font-bold text-lg"
+          >Rs <%= item.qty * item.item.price %></span
+        >
+      </div>
+      <% }) } %>
     </div>
-    <hr>
+    <hr />
     <div>
-        <div class="text-right py-4">
-            <span class="text-lg font-bold">Total Amount</span>
-            <span class="amount text-2xl font-bold ml-2">Rs 2030</span>
+      <div class="text-right py-4">
+        <span class="text-lg font-bold">Total Amount</span>
+        <span class="amount text-2xl font-bold ml-2"
+          >Rs <%= session.cart ? session.cart.totalPrice : '' %></span
+        >
+        <div>
+          <% if(user) { %>
+          <form action="/orders" method="post" class="mt-12">
+            <input
+              type="text"
+              name="phone"
+              class="border border-gray-400 p-2 w-1/2 mb-4"
+              placeholder="Phone Number"
+            />
+            <input
+              type="text"
+              name="address"
+              class="border border-gray-400 p-2 w-1/2"
+              placeholder="Address"
+            />
             <div>
-                <form action="" class="mt-12">
-                    <input type="text" class="border border-gray-400 p-2 w-1/2 mb-4" placeholder="Phone Number">
-                    <input type="text" class="border border-gray-400 p-2 w-1/2" placeholder="Address">
-                    <div>
-
-                        <input type="submit" class="btn-primary px-6 py-2 rounded-full text-white font-bold my-6 bg-[#FE5F1E]" value="Order Now">
-                    </div>
-                </form>
+              <input
+                type="submit"
+                class="btn-primary px-6 py-2 rounded-full text-white font-bold my-6 bg-[#FE5F1E] cursor-pointer"
+                value="Order Now"
+              />
             </div>
-            <a href="" class="inline-block cursor-pointer btn-primary px-6 py-2 rounded-full text-white font-bold my-6">Login to continue.</a>
+          </form>
+          <% } %>
         </div>
+        <% if(!user) { %>
+        <a
+          href="/login"
+          class="inline-block cursor-pointer btn-primary px-6 py-2 rounded-full text-white font-bold my-6"
+          >Login to continue.</a
+        >
+        <% } %>
+      </div>
     </div>
   </div>
 </section>

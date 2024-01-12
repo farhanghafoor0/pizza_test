@@ -1,4 +1,6 @@
 @import './variables';
+@import '~noty/src/noty.scss';
+@import '~noty/src/themes/mint.scss';
 
 body {
     font-family: 'Quicksand', sans-serif;
@@ -60,4 +62,14 @@ section.cart {
 .login {
     background: $secondary;
     min-height: calc(100vh - 86px);
+}
+
+
+.noty_theme__mint {
+    border-radius: 50px !important;
+    padding-left: 8px !important;
+}
+
+a.link {
+    color: $primary;
 }
