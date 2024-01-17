@@ -41,9 +41,10 @@ if (alertMsg) {
     }, 2000);
 };
 
-
-// This runs code from admin.js file
-initAdmin();
+if (window.location.href.includes("admin")) {
+    // This runs code from admin.js file
+    initAdmin();
+}
 
 
 

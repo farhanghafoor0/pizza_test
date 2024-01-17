@@ -132,9 +132,10 @@ if (alertMsg) {
   }, 2000);
 }
 ;
-
-// This runs code from admin.js file
-(0,_admin__WEBPACK_IMPORTED_MODULE_1__.initAdmin)();
+if (window.location.href.includes("admin")) {
+  // This runs code from admin.js file
+  (0,_admin__WEBPACK_IMPORTED_MODULE_1__.initAdmin)();
+}
 
 // Change Order Status
 var statuses = document.querySelectorAll('.status_line');

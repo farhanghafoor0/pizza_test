@@ -16,7 +16,7 @@
   </div>
 
   <div
-    class="order container mx-auto w-1/2 <%= !session.cart ? 'hidden' : '' %>"
+    class="order container mx-auto w-full md:w-1/2 <%= !session.cart ? 'hidden' : '' %>"
   >
     <div class="flex items-center border-b border-gray-300 pb-4">
       <img src="/img/cart-black.png" alt="" />
@@ -26,14 +26,14 @@
       <% if (session.cart) { Object.values(session.cart.items).forEach(function
       (item) { %>
 
-      <div class="flex items-center my-8">
-        <img class="w-24" src="/img/<%= item.item.image %>" alt="" />
+      <div class="flex items-center my-8 text-sm lg:text-lg">
+        <img class="w-12 md:w-24" src="/img/<%= item.item.image %>" alt="" />
         <div class="flex-1 ml-4">
           <h1 class="capitalize"><%= item.item.name %></h1>
           <span><%= item.item.size %></span>
         </div>
         <span class="flex-1"><%= item.qty %> Pcs</span>
-        <span class="font-bold text-lg"
+        <span class="font-bold lg:text-lg"
           >Rs <%= item.qty * item.item.price %></span
         >
       </div>

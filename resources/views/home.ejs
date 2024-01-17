@@ -3,7 +3,7 @@
       <div class="container mx-auto flex items-center justify-between">
         <div class="left-wala w-1/2">
           <h6 class="text-lg"><em>Are you hungry?</em></h6>
-          <h1 class="text-6xl font-bold">Don't wait !</h1>
+          <h1 class="text-3xl md:text-6xl font-bold">Don't wait !</h1>
           <button class="btn-primary px-6 py-2 rounded-full text-white font-bold mt-4">Order Now</button>
         </div>
         <div class="right-wala w-1/2">
@@ -15,7 +15,7 @@
     <section class="menu container mx-auto py-8">
       <h1 class="text-xl font-bold mb-8 px-20">All Pizzas</h1>
 
-      <div class="all-cards grid grid-cols-4 col-gap-12 gap-12">
+      <div class="all-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 gap-12">
         <% pizzas.forEach(function(pizza) { %>
           <div class="single-card">
             <img class="h-40 mb-4 mx-auto" src="/img/<%= pizza.image %>" alt="" />
