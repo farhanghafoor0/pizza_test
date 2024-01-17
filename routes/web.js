@@ -30,10 +30,12 @@ function initRoutes (app) {
     // Customer Routes
     app.post("/orders", auth, orderController().store);
     app.get("/my-orders", auth, orderController().index);
+    app.get("/my-orders/:orderid", auth, orderController().singleOrder);
     
     
     // Admin Routes
     app.get("/admin/orders", admin, AdminOrderController().index);
+    app.post("/admin/order/status", admin, AdminOrderController().update);
 
     
 };
